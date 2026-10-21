@@ -1,0 +1,3 @@
+rule_id,problem,tipo,antecedent,consequent,justification,active
+1,classificacao,heurística,Anxiety_Score >= 75 AND Sleep_Quality == Poor,Burnout_Risk = High,Evidências do treino: alta ansiedade + sono ruim correlacionam-se com risco alto.,True
+2,regressao,relação,Anxiety_Score alto E Depression_Score alto,Burnout_Score elevado,"Correlação forte (r>0,91).",True

@@ -1,0 +1,10 @@
+Par,Correlação (r),|r|
+Anxiety_Score x Emotional_Stability,-0.9762,0.9762
+Mood_Score x Productivity_Score,0.9553,0.9553
+Anxiety_Score x Mood_Score,-0.924,0.924
+Anxiety_Score x Burnout_Score,0.9174,0.9174
+Mood_Score x Emotional_Stability,0.9165,0.9165
+Emotional_Stability x Burnout_Score,-0.9097,0.9097
+Mood_Score x Burnout_Score,-0.9083,0.9083
+Depression_Score x Mood_Score,-0.9059,0.9059
+Depression_Score x Burnout_Score,0.9035,0.9035

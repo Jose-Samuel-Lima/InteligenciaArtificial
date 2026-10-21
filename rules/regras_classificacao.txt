@@ -1,0 +1,10 @@
+# Base de regras SE-ENTÃO — Classificação (Burnout_Risk)
+# 
+# Tipo: relação | recomendação | diretriz | estratégia | heurística
+# Regra: SEMPRE com conjunções E/OU separadas, nunca misturar na mesma regra
+# Fonte: elaboradas a partir do conjunto de TREINO (sem consulta ao teste)
+
+# Exemplo (formato):
+# REGRA-01 | tipo: heurística
+# SE (Anxiety_Score > p75 AND Sleep_Quality == Poor) ENTÃO Burnout_Risk = High
+# Justificativa: evidências estatísticas do treino + coerência com literatura

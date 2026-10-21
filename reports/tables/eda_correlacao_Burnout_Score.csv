@@ -1,0 +1,20 @@
+Variável,Correlação (r),Força,Sinal
+Anxiety_Score,0.9174,muito forte,positivo
+Emotional_Stability,-0.9097,muito forte,negativo
+Mood_Score,-0.9083,muito forte,negativo
+Depression_Score,0.9035,muito forte,positivo
+Productivity_Score,-0.8849,forte,negativo
+Work_Hours_Per_Week,0.6078,moderada,positivo
+Screen_Time_Hours,0.3465,fraca,positivo
+Coffee_Cups_Per_Day,0.2639,fraca,positivo
+Meditation_Minutes,-0.2302,fraca,negativo
+Sleep_Hours,-0.2196,fraca,negativo
+Physical_Activity_Hours,-0.1877,fraca,negativo
+Social_Media_Hours,0.0086,fraca,positivo
+Absenteeism_Days,-0.004,fraca,negativo
+Gaming_Hours,-0.0022,fraca,negativo
+Job_Satisfaction,-0.0016,fraca,negativo
+Monthly_Income_USD,-0.0014,fraca,negativo
+Life_Satisfaction,-0.0012,fraca,negativo
+Age,0.0002,fraca,positivo
+Work_Life_Balance,0.0001,fraca,positivo

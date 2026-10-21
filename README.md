@@ -2,6 +2,11 @@
 
 Repositório destinado às atividades, trabalhos, exercícios e projetos desenvolvidos na disciplina **DCT1401 — Inteligência Artificial**.
 
+**Aluno:** José Samuel Silva Lima | **Matrícula:** 20250038765  
+**Disciplina:** DCT1401 — Inteligência Artificial | **Período:** 2026.2  
+**Repositório GitHub:** [https://github.com/Jose-Samuel-Lima/InteligenciaArtificial](https://github.com/Jose-Samuel-Lima/InteligenciaArtificial)  
+**Dataset utilizado:** [Mental Health and Burnout Prediction Dataset (Kaggle)](https://www.kaggle.com/datasets/mobeenfatimah/mental-health-and-burnout-prediction-dataset/data)
+
 ---
 
 ## 👤 Identificação
@@ -26,31 +31,41 @@ Os projetos são organizados por atividade para facilitar a execução, acompanh
 ```text
 .
 ├── README.md
-│
-├── atividades/
-│   ├── atividade-01/
-│   ├── atividade-02/
-│   └── ...
-│
-├── trabalhos/
-│   ├── trabalho-01/
-│   ├── trabalho-02/
-│   └── ...
-│
-├── datasets/
-│   └── ...
-│
+├── requirements.txt
+├── data/
+│   ├── raw/
+│   │   └── mental_health_burnout_prediction_dataset.csv
+│   └── processed/
+│       ├── dataset_clean.csv
+│       ├── dataset_regression.csv
+│       └── dataset_classification.csv
+├── docs/
+│   ├── relatorio.pdf        # Relatório da primeira atividade (análise de dados)
+│   └── relatorio_final.pdf  # Relatório final (avaliação comparativa de modelos)
+├── logs/
+│   └── cronometro_regras.csv
+├── main-15.pdf              # Enunciado da atividade 02
 ├── notebooks/
-│   └── ...
-│
-├── src/
-│   └── ...
-│
+│   ├── 01_eda.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_regression_analysis.ipynb
+│   └── 04_classification_analysis.ipynb
 ├── reports/
-│   └── ...
-│
-└── docs/
-    └── ...
+│   ├── figures/
+│   └── tables/
+├── rules/
+│   ├── regras_regressao.txt
+│   └── regras_classificacao.txt
+└── src/
+    ├── __init__.py
+    ├── config.py
+    ├── data.py
+    ├── eda.py
+    ├── expert_system.py
+    ├── metrics.py
+    ├── profiling.py
+    ├── visualization.py
+    └── models.py
 ```
 
 ---
@@ -400,33 +415,11 @@ Entre as visualizações estão:
 
 # ⚙️ Instalação
 
-Clone o repositório:
-
 ```bash
-git clone URL_DO_REPOSITORIO
-```
-
-Entre na pasta:
-
-```bash
-cd NOME_DO_REPOSITORIO
-```
-
-Instale as dependências:
-
-```bash
-pip install -r requirements.txt
-```
-
-Ou, caso esteja utilizando um ambiente virtual:
-
-```bash
+git clone https://github.com/Jose-Samuel-Lima/InteligenciaArtificial.git
+cd InteligenciaArtificial
 python -m venv .venv
-```
-
-Ative o ambiente virtual e depois execute:
-
-```bash
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
@@ -434,19 +427,7 @@ pip install -r requirements.txt
 
 # ▶️ Execução
 
-Para executar os notebooks, abra o projeto no **VS Code** ou em outro ambiente compatível com Jupyter.
-
-A atividade de análise de dados deve seguir a ordem:
-
-```text
-01_eda.ipynb
-        ↓
-02_preprocessing.ipynb
-        ↓
-03_regression_analysis.ipynb
-        ↓
-04_classification_analysis.ipynb
-```
+Execute na ordem: `01_eda.ipynb → 02_preprocessing.ipynb → 03_regression_analysis.ipynb → 04_classification_analysis.ipynb`. Dados processados em `data/processed/`, figuras em `reports/figures/`, tabelas em `reports/tables/`.
 
 Cada notebook apresenta uma etapa específica do processo.
 

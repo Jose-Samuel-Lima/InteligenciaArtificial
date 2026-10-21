@@ -1,0 +1,101 @@
+Variável,Categoria,Quantidade,Percentual (%)
+Gender,Female,16810,33.62
+Gender,Male,16681,33.362
+Gender,Other,16509,33.018
+Country,South Africa,2098,4.196
+Country,Canada,2061,4.122
+Country,Russia,2051,4.102
+Country,Saudi Arabia,2043,4.086
+Country,Pakistan,2039,4.078
+Country,Spain,2031,4.062
+Country,Turkey,2030,4.06
+Country,South Korea,2029,4.058
+Country,France,2021,4.042
+Country,United States,2014,4.028
+Country,Mexico,2010,4.02
+Country,Germany,2003,4.006
+Country,Egypt,2003,4.006
+Country,Japan,1999,3.998
+Country,Singapore,1989,3.978
+Country,India,1985,3.97
+Country,Australia,1985,3.97
+Country,United Kingdom,1983,3.966
+Country,Indonesia,1975,3.95
+Country,Malaysia,1974,3.948
+Country,United Arab Emirates,1960,3.92
+Country,China,1951,3.902
+Country,Nigeria,1946,3.892
+Country,Brazil,1915,3.83
+Country,Italy,1905,3.81
+Occupation,Student,2603,5.206
+Occupation,Doctor,2590,5.18
+Occupation,Marketing Manager,2552,5.104
+Occupation,Nurse,2536,5.072
+Occupation,Researcher,2534,5.068
+Occupation,Accountant,2532,5.064
+Occupation,Designer,2513,5.026
+Occupation,Freelancer,2511,5.022
+Occupation,Software Engineer,2500,5.0
+Occupation,Farmer,2489,4.978
+Occupation,Lawyer,2488,4.976
+Occupation,HR Specialist,2481,4.962
+Occupation,Civil Engineer,2474,4.948
+Occupation,Sales Executive,2473,4.946
+Occupation,Police Officer,2472,4.944
+Occupation,Teacher,2470,4.94
+Occupation,Pilot,2455,4.91
+Occupation,Chef,2450,4.9
+Occupation,Business Owner,2444,4.888
+Occupation,Data Scientist,2433,4.866
+Education_Level,PhD,10052,20.104
+Education_Level,Diploma,10031,20.062
+Education_Level,High School,10005,20.01
+Education_Level,Master,9987,19.974
+Education_Level,Bachelor,9925,19.85
+Employment_Status,Unemployed,12700,25.4
+Employment_Status,Student,12520,25.04
+Employment_Status,Employed,12414,24.828
+Employment_Status,Self-Employed,12366,24.732
+Remote_Work,No,16693,33.386
+Remote_Work,Hybrid,16674,33.348
+Remote_Work,Yes,16633,33.266
+Sleep_Quality,Good,16852,33.704
+Sleep_Quality,Average,16626,33.252
+Sleep_Quality,Excellent,8646,17.292
+Sleep_Quality,Poor,7876,15.752
+Stress_Level,Low,21587,43.174
+Stress_Level,Moderate,21264,42.528
+Stress_Level,High,7149,14.298
+Exercise_Frequency,Never,12592,25.184
+Exercise_Frequency,Rarely,12570,25.14
+Exercise_Frequency,Weekly,12513,25.026
+Exercise_Frequency,Daily,12325,24.65
+Alcohol_Consumption,No,25210,50.42
+Alcohol_Consumption,Yes,24790,49.58
+Smoking,No,25092,50.184
+Smoking,Yes,24908,49.816
+Healthy_Diet,No,25083,50.166
+Healthy_Diet,Yes,24917,49.834
+Chronic_Stress,No,43262,86.524
+Chronic_Stress,Yes,6738,13.476
+Family_History_Mental_Illness,No,25081,50.162
+Family_History_Mental_Illness,Yes,24919,49.838
+Therapy_Attendance,No,25411,50.822
+Therapy_Attendance,Yes,24589,49.178
+Support_System,Poor,12585,25.17
+Support_System,Average,12520,25.04
+Support_System,Good,12510,25.02
+Support_System,Excellent,12385,24.77
+Mental_Health_Status,Healthy,25369,50.738
+Mental_Health_Status,Needs Attention,14096,28.192
+Mental_Health_Status,Critical,10535,21.07
+AI_Wellness_Recommendation,Maintain Healthy Routine,7346,14.692
+AI_Wellness_Recommendation,Increase Physical Activity,7190,14.38
+AI_Wellness_Recommendation,Take Regular Breaks,7183,14.366
+AI_Wellness_Recommendation,Reduce Workload,7147,14.294
+AI_Wellness_Recommendation,Practice Mindfulness,7054,14.108
+AI_Wellness_Recommendation,Seek Professional Support,7047,14.094
+AI_Wellness_Recommendation,Improve Sleep,7033,14.066
+Burnout_Risk,Low,25369,50.738
+Burnout_Risk,Moderate,14780,29.56
+Burnout_Risk,High,9851,19.702
