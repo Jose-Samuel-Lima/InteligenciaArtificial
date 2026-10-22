@@ -1,10 +1,28 @@
-# Base de regras SE-ENTÃO — Classificação (Burnout_Risk)
-# 
-# Tipo: relação | recomendação | diretriz | estratégia | heurística
-# Regra: SEMPRE com conjunções E/OU separadas, nunca misturar na mesma regra
-# Fonte: elaboradas a partir do conjunto de TREINO (sem consulta ao teste)
+# Base de regras SE-ENTÃO - Classificação (Burnout_Risk)
+# Tipos: relação, recomendação, diretriz, estratégia, heurística
+# Elaboradas com base no conjunto de TREINO
 
-# Exemplo (formato):
-# REGRA-01 | tipo: heurística
-# SE (Anxiety_Score > p75 AND Sleep_Quality == Poor) ENTÃO Burnout_Risk = High
-# Justificativa: evidências estatísticas do treino + coerência com literatura
+REGRA-01 | tipo: heurística
+SE (Anxiety_Score >= 75 AND Sleep_Quality_Poor >=1) ENTÃO (Burnout_Risk = High)
+Justificativa: Alta ansiedade + sono pobre associam-se a risco alto
+
+REGRA-02 | tipo: relação
+SE (Anxiety_Score >= 60 AND Depression_Score >= 60) ENTÃO (Burnout_Risk = High)
+Justificativa: Sintomas afetivos elevados
+
+REGRA-03 | tipo: heurística
+SE (Stress_Level_High >=1 AND Work_Hours_Per_Week alto) ENTÃO (Burnout_Risk = High)
+Justificativa: Sobrecarga + estresse
+
+REGRA-04 | tipo: diretriz
+SE (Mood_Score baixo AND Emotional_Stability baixo) ENTÃO (Burnout_Risk = High)
+Justificativa: Regulação emocional comprometida
+
+REGRA-05 | tipo: estratégia
+SE (caso intermediário com fatores protetivos baixos) ENTÃO (Burnout_Risk = Moderate)
+Justificativa: Regra de transição
+
+REGRA-06 | tipo: recomendação
+SE (fatores protetivos elevados) ENTÃO (Burnout_Risk = Low)
+Justificativa: Fatores protetivos mitigam risco
+

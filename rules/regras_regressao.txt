@@ -1,10 +1,24 @@
-# Base de regras SE-ENTÃO — Regressão (Burnout_Score)
-#
-# Tipo: relação | recomendação | diretriz | estratégia | heurística
-# Abordagem: mapeamento por faixas (intervalos) com peso heurístico
-# Fonte: elaboradas a partir do conjunto de TREINO (sem consulta ao teste)
+# Base de regras SE-ENTÃO - Regressão (Burnout_Score)
+# Tipos: relação, recomendação, diretriz, estratégia, heurística
+# Elaboradas com base no conjunto de TREINO
 
-# Exemplo (formato):
-# REGRA-01 | tipo: relação
-# SE (Anxiety_Score >= faixas_altas AND Depression_Score >= faixas_altas) ENTÃO +delta ao Burnout_Score
-# Justificativa: correlação forte observada (r>0,90) mas sem duplo-contagem
+REGRA-01 | tipo: relação
+SE (Anxiety_Score + Depression_Score elevados) ENTÃO (Burnout_Score elevado)
+Justificativa: Correlação forte com alvo
+
+REGRA-02 | tipo: relação
+SE (Mood_Score e Emotional_Stability elevados (protetivos)) ENTÃO (Burnout_Score reduzido)
+Justificativa: Associação negativa
+
+REGRA-03 | tipo: heurística
+SE (Work_Hours_Per_Week > 55) ENTÃO (Burnout_Score tende a aumentar)
+Justificativa: Carga horária
+
+REGRA-04 | tipo: diretriz
+SE (Sono adequado + atividade física) ENTÃO (Burnout_Score menor)
+Justificativa: Hábitos protetores
+
+REGRA-05 | tipo: estratégia
+SE (Combinação de fatores de risco) ENTÃO (Burnout_Score alto)
+Justificativa: Efeito aditivo
+

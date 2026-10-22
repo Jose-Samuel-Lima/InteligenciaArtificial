@@ -1,0 +1,7 @@
+id,tipo,se,entao,justificativa
+1,heurística,Anxiety_Score >= 75 AND Sleep_Quality_Poor >=1,Burnout_Risk = High,Alta ansiedade + sono pobre associam-se a risco alto
+2,relação,Anxiety_Score >= 60 AND Depression_Score >= 60,Burnout_Risk = High,Sintomas afetivos elevados
+3,heurística,Stress_Level_High >=1 AND Work_Hours_Per_Week alto,Burnout_Risk = High,Sobrecarga + estresse
+4,diretriz,Mood_Score baixo AND Emotional_Stability baixo,Burnout_Risk = High,Regulação emocional comprometida
+5,estratégia,caso intermediário com fatores protetivos baixos,Burnout_Risk = Moderate,Regra de transição
+6,recomendação,fatores protetivos elevados,Burnout_Risk = Low,Fatores protetivos mitigam risco
