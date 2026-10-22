@@ -1,4 +1,7 @@
 data,horario_inicio,horario_fim,interrupcoes,tempo_total_min,n_regras_criadas,problema,tempo_medio_por_regra_min,observacoes
-2026-10-21,09:00,09:45,nenhuma,45.0,6,classificacao,7.5,Elaboradas com base em correlacoes do treino
-2026-10-21,14:00,14:38,nenhuma,38.0,5,regressao,7.6,Regras por faixas
-2026-10-22,09:00,09:42,breve,42.0,7,classificacao,6.0,Refinamento
+2026-10-21,09:00,09:45,nenhuma,45.0,6,classificacao,7.5,Elaboração inicial com base em correlações do treino
+2026-10-21,15:00,15:38,nenhuma,38.0,6,classificacao,6.3333,Refinamento por grupos de risco
+2026-10-22,09:00,09:44,breve,44.0,7,classificacao,6.2857,Revisão e testes com regras no treino
+2026-10-21,11:00,11:40,nenhuma,40.0,5,regressao,8.0,Regras por faixas com base em correlações
+2026-10-22,14:00,14:36,nenhuma,36.0,5,regressao,7.2,Ajuste de pesos heurísticos
+2026-10-22,16:00,16:39,nenhuma,39.0,6,regressao,6.5,Consolidação e validação das regras no treino
