@@ -1,0 +1,16 @@
+Familia,Problema,Metrica,Media,Desvio_padrao
+Arvore de Decisao,Classificacao,F1_macro,0.7869770737917499,0.003293808211550635
+Arvore de Decisao,Classificacao,Accuracy,0.805525,0.00479452813110948
+Ensemble (Random Forest),Classificacao,F1_macro,0.7961948476157972,0.004497978018914291
+Ensemble (Random Forest),Classificacao,Accuracy,0.814175,0.003562609647435461
+Ensemble (Gradient Boosting),Classificacao,F1_macro,0.7966150091001988,0.003844486367949343
+Ensemble (Gradient Boosting),Classificacao,Accuracy,0.8144,0.002788648866386735
+Arvore de Decisao,Regressao,RMSE,9.175593692538866,0.0769741645957352
+Arvore de Decisao,Regressao,MAE,7.732953042023448,0.06157743552528739
+Arvore de Decisao,Regressao,R2,0.8774391181587531,0.002336179263017058
+Ensemble (Random Forest),Regressao,RMSE,8.851931734507364,0.06283398789191884
+Ensemble (Random Forest),Regressao,MAE,7.536987294997419,0.0542528199822796
+Ensemble (Random Forest),Regressao,R2,0.8859354756023162,0.0018799993874786698
+Ensemble (Gradient Boosting),Regressao,RMSE,8.911548380267913,0.04955030246643855
+Ensemble (Gradient Boosting),Regressao,MAE,7.580053718889346,0.05086653235925436
+Ensemble (Gradient Boosting),Regressao,R2,0.8843953230938364,0.00164224959545902

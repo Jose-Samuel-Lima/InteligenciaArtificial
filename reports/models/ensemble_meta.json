@@ -1,0 +1,42 @@
+{
+  "rf_classificacao": {
+    "n_estimators": 100,
+    "min_samples_leaf": 1,
+    "max_features": 0.5,
+    "max_depth": 10
+  },
+  "rf_regressao": {
+    "n_estimators": 100,
+    "min_samples_leaf": 10,
+    "max_features": 1.0,
+    "max_depth": 10
+  },
+  "gb_classificacao": {
+    "n_estimators": 100,
+    "max_depth": 2,
+    "learning_rate": 0.1
+  },
+  "gb_regressao": {
+    "n_estimators": 100,
+    "max_depth": 2,
+    "learning_rate": 0.1
+  },
+  "tamanho_disco_kb": {
+    "rf_classificacao": 2542.4091796875,
+    "rf_regressao": 2819.3603515625,
+    "gb_classificacao": 57.48046875,
+    "gb_regressao": 25.744140625
+  },
+  "tempo_treino_s": {
+    "rf_classificacao": 9.203373,
+    "rf_regressao": 17.7869781,
+    "gb_classificacao": 60.86730269999998,
+    "gb_regressao": 20.608518800000013
+  },
+  "pico_memoria_treino_kb": {
+    "rf_classificacao": 39850.8779296875,
+    "rf_regressao": 39849.197265625,
+    "gb_classificacao": 39847.3818359375,
+    "gb_regressao": 39847.4638671875
+  }
+}

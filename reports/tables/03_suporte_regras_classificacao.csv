@@ -1,0 +1,20 @@
+regra,tipo,antecedente,consequente,peso,disparos,cobertura (%)
+REGRA-01,heurística,Anxiety_Score >= 75 AND Depression_Score >= 75,High,3.0,3226,8.065
+REGRA-02,relação,Anxiety_Score >= 60 AND Depression_Score >= 60,High,2.0,7611,19.028
+REGRA-03,relação,Mood_Score <= 40 AND Emotional_Stability <= 40,High,2.0,7865,19.662
+REGRA-04,estratégia,Productivity_Score <= 40 AND Stress_Level >= 2,High,2.0,5437,13.592
+REGRA-05,estratégia,Work_Hours_Per_Week >= 58 AND Stress_Level >= 2,High,1.5,3801,9.502
+REGRA-06,heurística,Chronic_Stress >= 1 AND Anxiety_Score >= 60,High,1.5,5306,13.265
+REGRA-07,relação,Anxiety_Score >= 75,High,1.0,4433,11.083
+REGRA-08,relação,Depression_Score >= 75,High,1.0,4614,11.535
+REGRA-09,diretriz,Mood_Score <= 25,High,1.5,4342,10.855
+REGRA-10,diretriz,Emotional_Stability <= 25,High,1.5,4621,11.552
+REGRA-11,diretriz,Productivity_Score <= 25,High,1.0,4582,11.455
+REGRA-12,relação,Anxiety_Score >= 40 AND Anxiety_Score < 60,Moderate,1.0,9821,24.552
+REGRA-13,relação,Depression_Score >= 40 AND Depression_Score < 60,Moderate,1.0,9777,24.442
+REGRA-14,heurística,Mood_Score > 40 AND Mood_Score <= 60,Moderate,1.0,10053,25.132
+REGRA-15,heurística,Emotional_Stability > 40 AND Emotional_Stability <= 60,Moderate,1.0,9931,24.828
+REGRA-16,diretriz,Work_Hours_Per_Week >= 45,Moderate,0.5,20329,50.823
+REGRA-17,estratégia,Stress_Level == 1,Moderate,0.5,17024,42.56
+REGRA-18,recomendação,Sleep_Hours >= 7 AND Physical_Activity_Hours >= 7 AND Life_Satisfaction >= 8,Low,2.0,1819,4.548
+REGRA-19,recomendação,Mood_Score >= 60 AND Emotional_Stability >= 60 AND Anxiety_Score < 40,Low,1.5,17689,44.222

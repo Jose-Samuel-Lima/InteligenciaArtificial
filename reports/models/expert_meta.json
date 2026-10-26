@@ -1,0 +1,9 @@
+{
+  "n_regras_classificacao": 19,
+  "n_regras_regressao": 16,
+  "calibracao_regressao": {
+    "intercept": 26.989235856246655,
+    "slope": 1.389893649890426
+  },
+  "esforco_humano_min": 242.0
+}

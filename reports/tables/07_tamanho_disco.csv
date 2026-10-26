@@ -1,0 +1,9 @@
+Artefato,Tamanho (KB)
+tree_classificacao,6.369140625
+tree_regressao,5.1650390625
+rf_classificacao,2542.4091796875
+rf_regressao,2819.3603515625
+gb_classificacao,57.48046875
+gb_regressao,25.744140625
+expert_classificacao,8.4541015625
+expert_regressao,6.5439453125

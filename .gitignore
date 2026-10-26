@@ -1,0 +1,16 @@
+# Ambiente Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Artefatos binários gerados pelos notebooks (reproduzíveis)
+reports/models/*.joblib
+reports/predictions/*.npz
+
+# Sistema
+.DS_Store
+Thumbs.db

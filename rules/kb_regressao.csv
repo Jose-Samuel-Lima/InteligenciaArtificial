@@ -1,6 +1,17 @@
-id,tipo,se,entao,justificativa
-1,relação,Anxiety_Score + Depression_Score elevados,Burnout_Score elevado,Correlação forte com alvo
-2,relação,Mood_Score e Emotional_Stability elevados (protetivos),Burnout_Score reduzido,Associação negativa
-3,heurística,Work_Hours_Per_Week > 55,Burnout_Score tende a aumentar,Carga horária
-4,diretriz,Sono adequado + atividade física,Burnout_Score menor,Hábitos protetores
-5,estratégia,Combinação de fatores de risco,Burnout_Score alto,Efeito aditivo
+rule_id,problem,tipo,antecedent,conditions,consequent,weight,justification,active
+1,regressao,relação,Anxiety_Score >= 75,"[{""feature"": ""Anxiety_Score"", ""operator"": "">="", ""value"": 75.0}]",Burnout_Score,8.0,Ansiedade muito alta aumenta o escore.,True
+2,regressao,relação,Anxiety_Score >= 60 AND Anxiety_Score < 75,"[{""feature"": ""Anxiety_Score"", ""operator"": "">="", ""value"": 60.0}, {""feature"": ""Anxiety_Score"", ""operator"": ""<"", ""value"": 75.0}]",Burnout_Score,5.0,Ansiedade elevada em faixa intermediária.,True
+3,regressao,relação,Depression_Score >= 75,"[{""feature"": ""Depression_Score"", ""operator"": "">="", ""value"": 75.0}]",Burnout_Score,8.0,Depressão muito alta aumenta o escore.,True
+4,regressao,relação,Depression_Score >= 60 AND Depression_Score < 75,"[{""feature"": ""Depression_Score"", ""operator"": "">="", ""value"": 60.0}, {""feature"": ""Depression_Score"", ""operator"": ""<"", ""value"": 75.0}]",Burnout_Score,5.0,Depressão elevada em faixa intermediária.,True
+5,regressao,relação,Mood_Score <= 25,"[{""feature"": ""Mood_Score"", ""operator"": ""<="", ""value"": 25.0}]",Burnout_Score,6.0,Humor muito baixo eleva o escore.,True
+6,regressao,relação,Mood_Score > 25 AND Mood_Score <= 40,"[{""feature"": ""Mood_Score"", ""operator"": "">"", ""value"": 25.0}, {""feature"": ""Mood_Score"", ""operator"": ""<="", ""value"": 40.0}]",Burnout_Score,4.0,Humor baixo em faixa intermediária.,True
+7,regressao,relação,Emotional_Stability <= 25,"[{""feature"": ""Emotional_Stability"", ""operator"": ""<="", ""value"": 25.0}]",Burnout_Score,7.0,Instabilidade emocional severa.,True
+8,regressao,relação,Emotional_Stability > 25 AND Emotional_Stability <= 40,"[{""feature"": ""Emotional_Stability"", ""operator"": "">"", ""value"": 25.0}, {""feature"": ""Emotional_Stability"", ""operator"": ""<="", ""value"": 40.0}]",Burnout_Score,4.0,Instabilidade emocional moderada.,True
+9,regressao,estratégia,Productivity_Score <= 25,"[{""feature"": ""Productivity_Score"", ""operator"": ""<="", ""value"": 25.0}]",Burnout_Score,5.0,Produtividade muito reduzida.,True
+10,regressao,estratégia,Productivity_Score > 25 AND Productivity_Score <= 40,"[{""feature"": ""Productivity_Score"", ""operator"": "">"", ""value"": 25.0}, {""feature"": ""Productivity_Score"", ""operator"": ""<="", ""value"": 40.0}]",Burnout_Score,3.0,Produtividade reduzida.,True
+11,regressao,heurística,Work_Hours_Per_Week >= 58,"[{""feature"": ""Work_Hours_Per_Week"", ""operator"": "">="", ""value"": 58.0}]",Burnout_Score,5.0,Jornada muito longa.,True
+12,regressao,heurística,Work_Hours_Per_Week >= 50 AND Work_Hours_Per_Week < 58,"[{""feature"": ""Work_Hours_Per_Week"", ""operator"": "">="", ""value"": 50.0}, {""feature"": ""Work_Hours_Per_Week"", ""operator"": ""<"", ""value"": 58.0}]",Burnout_Score,2.0,Jornada acima do padrão.,True
+13,regressao,diretriz,Stress_Level >= 2,"[{""feature"": ""Stress_Level"", ""operator"": "">="", ""value"": 2.0}]",Burnout_Score,4.0,Estresse máximo autorreferido.,True
+14,regressao,diretriz,Chronic_Stress >= 1,"[{""feature"": ""Chronic_Stress"", ""operator"": "">="", ""value"": 1.0}]",Burnout_Score,4.0,Estresse crônico autorreferido.,True
+15,regressao,estratégia,Sleep_Hours < 6 AND Physical_Activity_Hours < 3,"[{""feature"": ""Sleep_Hours"", ""operator"": ""<"", ""value"": 6.0}, {""feature"": ""Physical_Activity_Hours"", ""operator"": ""<"", ""value"": 3.0}]",Burnout_Score,5.0,Privação de sono combinada com sedentarismo.,True
+16,regressao,recomendação,Sleep_Hours >= 8 AND Physical_Activity_Hours >= 7 AND Meditation_Minutes >= 45,"[{""feature"": ""Sleep_Hours"", ""operator"": "">="", ""value"": 8.0}, {""feature"": ""Physical_Activity_Hours"", ""operator"": "">="", ""value"": 7.0}, {""feature"": ""Meditation_Minutes"", ""operator"": "">="", ""value"": 45.0}]",Burnout_Score,-8.0,Conjunto de hábitos protetores reduz o escore.,True

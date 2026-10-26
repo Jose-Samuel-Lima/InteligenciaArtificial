@@ -1,0 +1,86 @@
+Variavel,Importancia
+Stress_Level,0.8455503507113159
+Anxiety_Score,0.09313705437107338
+Depression_Score,0.04661476937215751
+Mood_Score,0.009747956441077432
+Productivity_Score,0.0007966698449313707
+Emotional_Stability,0.0006392074003708189
+Meditation_Minutes,0.0005135789288164095
+Physical_Activity_Hours,0.0004718898823748152
+Job_Satisfaction,0.00035505528603994716
+Gaming_Hours,0.0003449069684863855
+Work_Hours_Per_Week,0.0003248237720020177
+Country_South Africa,0.0002798369056134428
+Social_Media_Hours,0.0002794346347954638
+Monthly_Income_USD,0.00027476390776310776
+Absenteeism_Days,0.00020354494738130237
+Occupation_Civil Engineer,0.0001533634575685507
+Remote_Work_No,0.00014426207546330751
+Chronic_Stress,0.00010502698691422548
+Work_Life_Balance,6.350410585466507e-05
+Education_Level,0.0
+Age,0.0
+Alcohol_Consumption,0.0
+Coffee_Cups_Per_Day,0.0
+Exercise_Frequency,0.0
+Screen_Time_Hours,0.0
+Sleep_Quality,0.0
+Sleep_Hours,0.0
+Family_History_Mental_Illness,0.0
+Therapy_Attendance,0.0
+Life_Satisfaction,0.0
+Gender_Female,0.0
+Gender_Male,0.0
+Gender_Other,0.0
+Country_Australia,0.0
+Country_Brazil,0.0
+Support_System,0.0
+Healthy_Diet,0.0
+Country_China,0.0
+Country_Egypt,0.0
+Country_Germany,0.0
+Country_France,0.0
+Country_Indonesia,0.0
+Country_Italy,0.0
+Country_Japan,0.0
+Country_India,0.0
+Country_Malaysia,0.0
+Country_Mexico,0.0
+Country_Pakistan,0.0
+Country_Nigeria,0.0
+Country_Russia,0.0
+Country_Saudi Arabia,0.0
+Country_Canada,0.0
+Smoking,0.0
+Country_South Korea,0.0
+Country_Singapore,0.0
+Country_United Arab Emirates,0.0
+Country_Spain,0.0
+Country_United States,0.0
+Occupation_Accountant,0.0
+Occupation_Business Owner,0.0
+Country_Turkey,0.0
+Occupation_Chef,0.0
+Occupation_Data Scientist,0.0
+Occupation_Designer,0.0
+Occupation_Doctor,0.0
+Occupation_Farmer,0.0
+Occupation_Freelancer,0.0
+Occupation_HR Specialist,0.0
+Country_United Kingdom,0.0
+Occupation_Lawyer,0.0
+Occupation_Marketing Manager,0.0
+Occupation_Pilot,0.0
+Occupation_Nurse,0.0
+Occupation_Researcher,0.0
+Occupation_Sales Executive,0.0
+Occupation_Software Engineer,0.0
+Occupation_Police Officer,0.0
+Occupation_Student,0.0
+Occupation_Teacher,0.0
+Employment_Status_Self-Employed,0.0
+Employment_Status_Employed,0.0
+Employment_Status_Student,0.0
+Employment_Status_Unemployed,0.0
+Remote_Work_Hybrid,0.0
+Remote_Work_Yes,0.0

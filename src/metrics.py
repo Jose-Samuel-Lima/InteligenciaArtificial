@@ -71,7 +71,11 @@ def generalization_gap(metrics_train: dict, metrics_test: dict) -> dict:
     gap = {}
     for key, value_train in metrics_train.items():
         value_test = metrics_test[key]
-        diff = value_train - value_test
+        if not isinstance(value_train, (int, float, np.floating, np.integer)):
+            continue
+        if not isinstance(value_test, (int, float, np.floating, np.integer)):
+            continue
+        diff = float(value_train) - float(value_test)
         if key in error_metrics:
             gap[f"Gap {key}"] = diff
         else:
@@ -112,7 +116,7 @@ def classification_metrics(y_true, y_pred, y_proba=None, classes=None) -> dict:
                     roc_auc_score(y_true, y_proba, multi_class="ovr", average="macro", labels=classes)
                 )
                 metrics["PR-AUC (macro)"] = float(
-                    average_precision_score(y_true, y_proba, average="macro", labels=classes)
+                    average_precision_score(y_true, y_proba, average="macro")
                 )
             except ValueError:
                 metrics["ROC-AUC (OVR macro)"] = float("nan")

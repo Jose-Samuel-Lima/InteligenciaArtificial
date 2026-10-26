@@ -1,0 +1,17 @@
+regra,tipo,antecedente,consequente,peso,disparos,cobertura (%)
+REGRA-01,relação,Anxiety_Score >= 75,Burnout_Score,8.0,4443,11.108
+REGRA-02,relação,Anxiety_Score >= 60 AND Anxiety_Score < 75,Burnout_Score,5.0,5240,13.1
+REGRA-03,relação,Depression_Score >= 75,Burnout_Score,8.0,4614,11.535
+REGRA-04,relação,Depression_Score >= 60 AND Depression_Score < 75,Burnout_Score,5.0,5238,13.095
+REGRA-05,relação,Mood_Score <= 25,Burnout_Score,6.0,4345,10.862
+REGRA-06,relação,Mood_Score > 25 AND Mood_Score <= 40,Burnout_Score,4.0,5195,12.987
+REGRA-07,relação,Emotional_Stability <= 25,Burnout_Score,7.0,4631,11.578
+REGRA-08,relação,Emotional_Stability > 25 AND Emotional_Stability <= 40,Burnout_Score,4.0,5398,13.495
+REGRA-09,estratégia,Productivity_Score <= 25,Burnout_Score,5.0,4583,11.458
+REGRA-10,estratégia,Productivity_Score > 25 AND Productivity_Score <= 40,Burnout_Score,3.0,5154,12.885
+REGRA-11,heurística,Work_Hours_Per_Week >= 58,Burnout_Score,5.0,10235,25.588
+REGRA-12,heurística,Work_Hours_Per_Week >= 50 AND Work_Hours_Per_Week < 58,Burnout_Score,2.0,6217,15.542
+REGRA-13,diretriz,Stress_Level >= 2,Burnout_Score,4.0,5714,14.285
+REGRA-14,diretriz,Chronic_Stress >= 1,Burnout_Score,4.0,5381,13.452
+REGRA-15,estratégia,Sleep_Hours < 6 AND Physical_Activity_Hours < 3,Burnout_Score,5.0,3621,9.052
+REGRA-16,recomendação,Sleep_Hours >= 8 AND Physical_Activity_Hours >= 7 AND Meditation_Minutes >= 45,Burnout_Score,-8.0,1012,2.53

@@ -1,0 +1,5 @@
+Modelo,Problema,Tempo_treino_s,Pico_memoria_treino_kb
+RandomForest (n=100),Classificacao,9.203373,39850.8779296875
+RandomForest (n=100),Regressao,17.7869781,39849.197265625
+GradientBoosting (n=100),Classificacao,60.86730269999998,39847.3818359375
+GradientBoosting (n=100),Regressao,20.608518800000013,39847.4638671875

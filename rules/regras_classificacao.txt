@@ -1,28 +1,80 @@
-# Base de regras SE-ENTÃO - Classificação (Burnout_Risk)
+# Base de regras SE-ENTÃO — Classificação (Burnout_Risk)
 # Tipos: relação, recomendação, diretriz, estratégia, heurística
-# Elaboradas com base no conjunto de TREINO
+# Regras elaboradas exclusivamente com o conjunto de TREINO
+# Conjunções sempre com E (sem misturar E/OU na mesma regra)
 
 REGRA-01 | tipo: heurística
-SE (Anxiety_Score >= 75 AND Sleep_Quality_Poor >=1) ENTÃO (Burnout_Risk = High)
-Justificativa: Alta ansiedade + sono pobre associam-se a risco alto
+SE (Anxiety_Score >= 75 AND Depression_Score >= 75) ENTÃO (High) [peso=3]
+Justificativa: Ansiedade e depressão muito elevadas: combinação clássica de esgotamento.
 
 REGRA-02 | tipo: relação
-SE (Anxiety_Score >= 60 AND Depression_Score >= 60) ENTÃO (Burnout_Risk = High)
-Justificativa: Sintomas afetivos elevados
+SE (Anxiety_Score >= 60 AND Depression_Score >= 60) ENTÃO (High) [peso=2]
+Justificativa: Sintomas afetivos elevados associados a risco alto no treino.
 
-REGRA-03 | tipo: heurística
-SE (Stress_Level_High >=1 AND Work_Hours_Per_Week alto) ENTÃO (Burnout_Risk = High)
-Justificativa: Sobrecarga + estresse
+REGRA-03 | tipo: relação
+SE (Mood_Score <= 40 AND Emotional_Stability <= 40) ENTÃO (High) [peso=2]
+Justificativa: Humor e estabilidade emocional baixos reduzem a capacidade de regulação.
 
-REGRA-04 | tipo: diretriz
-SE (Mood_Score baixo AND Emotional_Stability baixo) ENTÃO (Burnout_Risk = High)
-Justificativa: Regulação emocional comprometida
+REGRA-04 | tipo: estratégia
+SE (Productivity_Score <= 40 AND Stress_Level >= 2) ENTÃO (High) [peso=2]
+Justificativa: Queda de produtividade sob estresse máximo indica exaustão.
 
 REGRA-05 | tipo: estratégia
-SE (caso intermediário com fatores protetivos baixos) ENTÃO (Burnout_Risk = Moderate)
-Justificativa: Regra de transição
+SE (Work_Hours_Per_Week >= 58 AND Stress_Level >= 2) ENTÃO (High) [peso=1.5]
+Justificativa: Sobrecarga horária somada a estresse intenso.
 
-REGRA-06 | tipo: recomendação
-SE (fatores protetivos elevados) ENTÃO (Burnout_Risk = Low)
-Justificativa: Fatores protetivos mitigam risco
+REGRA-06 | tipo: heurística
+SE (Chronic_Stress >= 1 AND Anxiety_Score >= 60) ENTÃO (High) [peso=1.5]
+Justificativa: Estresse crônico potencializa ansiedade elevada.
 
+REGRA-07 | tipo: relação
+SE (Anxiety_Score >= 75) ENTÃO (High) [peso=1]
+Justificativa: Ansiedade muito alta isoladamente já eleva o risco.
+
+REGRA-08 | tipo: relação
+SE (Depression_Score >= 75) ENTÃO (High) [peso=1]
+Justificativa: Depressão muito alta isoladamente já eleva o risco.
+
+REGRA-09 | tipo: diretriz
+SE (Mood_Score <= 25) ENTÃO (High) [peso=1.5]
+Justificativa: Humor muito baixo é indicador de gravidade.
+
+REGRA-10 | tipo: diretriz
+SE (Emotional_Stability <= 25) ENTÃO (High) [peso=1.5]
+Justificativa: Instabilidade emocional severa.
+
+REGRA-11 | tipo: diretriz
+SE (Productivity_Score <= 25) ENTÃO (High) [peso=1]
+Justificativa: Produtividade muito reduzida.
+
+REGRA-12 | tipo: relação
+SE (Anxiety_Score >= 40 AND Anxiety_Score < 60) ENTÃO (Moderate) [peso=1]
+Justificativa: Ansiedade intermediária: risco moderado.
+
+REGRA-13 | tipo: relação
+SE (Depression_Score >= 40 AND Depression_Score < 60) ENTÃO (Moderate) [peso=1]
+Justificativa: Depressão intermediária: risco moderado.
+
+REGRA-14 | tipo: heurística
+SE (Mood_Score > 40 AND Mood_Score <= 60) ENTÃO (Moderate) [peso=1]
+Justificativa: Humor na faixa intermediária.
+
+REGRA-15 | tipo: heurística
+SE (Emotional_Stability > 40 AND Emotional_Stability <= 60) ENTÃO (Moderate) [peso=1]
+Justificativa: Estabilidade emocional na faixa intermediária.
+
+REGRA-16 | tipo: diretriz
+SE (Work_Hours_Per_Week >= 45) ENTÃO (Moderate) [peso=0.5]
+Justificativa: Jornada acima da mediana aumenta a exposição.
+
+REGRA-17 | tipo: estratégia
+SE (Stress_Level == 1) ENTÃO (Moderate) [peso=0.5]
+Justificativa: Estresse moderado (nível 1).
+
+REGRA-18 | tipo: recomendação
+SE (Sleep_Hours >= 7 AND Physical_Activity_Hours >= 7 AND Life_Satisfaction >= 8) ENTÃO (Low) [peso=2]
+Justificativa: Hábitos protetores (sono, atividade física e satisfação) reduzem o risco.
+
+REGRA-19 | tipo: recomendação
+SE (Mood_Score >= 60 AND Emotional_Stability >= 60 AND Anxiety_Score < 40) ENTÃO (Low) [peso=1.5]
+Justificativa: Perfil emocional saudável sustenta classificação de baixo risco.

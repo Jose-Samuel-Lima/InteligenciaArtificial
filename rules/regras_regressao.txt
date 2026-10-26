@@ -1,24 +1,68 @@
-# Base de regras SE-ENTÃO - Regressão (Burnout_Score)
+# Base de regras SE-ENTÃO — Regressão (Burnout_Score)
 # Tipos: relação, recomendação, diretriz, estratégia, heurística
-# Elaboradas com base no conjunto de TREINO
+# Regras elaboradas exclusivamente com o conjunto de TREINO
+# Conjunções sempre com E (sem misturar E/OU na mesma regra)
 
 REGRA-01 | tipo: relação
-SE (Anxiety_Score + Depression_Score elevados) ENTÃO (Burnout_Score elevado)
-Justificativa: Correlação forte com alvo
+SE (Anxiety_Score >= 75) ENTÃO (Burnout_Score) [peso=8]
+Justificativa: Ansiedade muito alta aumenta o escore.
 
 REGRA-02 | tipo: relação
-SE (Mood_Score e Emotional_Stability elevados (protetivos)) ENTÃO (Burnout_Score reduzido)
-Justificativa: Associação negativa
+SE (Anxiety_Score >= 60 AND Anxiety_Score < 75) ENTÃO (Burnout_Score) [peso=5]
+Justificativa: Ansiedade elevada em faixa intermediária.
 
-REGRA-03 | tipo: heurística
-SE (Work_Hours_Per_Week > 55) ENTÃO (Burnout_Score tende a aumentar)
-Justificativa: Carga horária
+REGRA-03 | tipo: relação
+SE (Depression_Score >= 75) ENTÃO (Burnout_Score) [peso=8]
+Justificativa: Depressão muito alta aumenta o escore.
 
-REGRA-04 | tipo: diretriz
-SE (Sono adequado + atividade física) ENTÃO (Burnout_Score menor)
-Justificativa: Hábitos protetores
+REGRA-04 | tipo: relação
+SE (Depression_Score >= 60 AND Depression_Score < 75) ENTÃO (Burnout_Score) [peso=5]
+Justificativa: Depressão elevada em faixa intermediária.
 
-REGRA-05 | tipo: estratégia
-SE (Combinação de fatores de risco) ENTÃO (Burnout_Score alto)
-Justificativa: Efeito aditivo
+REGRA-05 | tipo: relação
+SE (Mood_Score <= 25) ENTÃO (Burnout_Score) [peso=6]
+Justificativa: Humor muito baixo eleva o escore.
 
+REGRA-06 | tipo: relação
+SE (Mood_Score > 25 AND Mood_Score <= 40) ENTÃO (Burnout_Score) [peso=4]
+Justificativa: Humor baixo em faixa intermediária.
+
+REGRA-07 | tipo: relação
+SE (Emotional_Stability <= 25) ENTÃO (Burnout_Score) [peso=7]
+Justificativa: Instabilidade emocional severa.
+
+REGRA-08 | tipo: relação
+SE (Emotional_Stability > 25 AND Emotional_Stability <= 40) ENTÃO (Burnout_Score) [peso=4]
+Justificativa: Instabilidade emocional moderada.
+
+REGRA-09 | tipo: estratégia
+SE (Productivity_Score <= 25) ENTÃO (Burnout_Score) [peso=5]
+Justificativa: Produtividade muito reduzida.
+
+REGRA-10 | tipo: estratégia
+SE (Productivity_Score > 25 AND Productivity_Score <= 40) ENTÃO (Burnout_Score) [peso=3]
+Justificativa: Produtividade reduzida.
+
+REGRA-11 | tipo: heurística
+SE (Work_Hours_Per_Week >= 58) ENTÃO (Burnout_Score) [peso=5]
+Justificativa: Jornada muito longa.
+
+REGRA-12 | tipo: heurística
+SE (Work_Hours_Per_Week >= 50 AND Work_Hours_Per_Week < 58) ENTÃO (Burnout_Score) [peso=2]
+Justificativa: Jornada acima do padrão.
+
+REGRA-13 | tipo: diretriz
+SE (Stress_Level >= 2) ENTÃO (Burnout_Score) [peso=4]
+Justificativa: Estresse máximo autorreferido.
+
+REGRA-14 | tipo: diretriz
+SE (Chronic_Stress >= 1) ENTÃO (Burnout_Score) [peso=4]
+Justificativa: Estresse crônico autorreferido.
+
+REGRA-15 | tipo: estratégia
+SE (Sleep_Hours < 6 AND Physical_Activity_Hours < 3) ENTÃO (Burnout_Score) [peso=5]
+Justificativa: Privação de sono combinada com sedentarismo.
+
+REGRA-16 | tipo: recomendação
+SE (Sleep_Hours >= 8 AND Physical_Activity_Hours >= 7 AND Meditation_Minutes >= 45) ENTÃO (Burnout_Score) [peso=-8]
+Justificativa: Conjunto de hábitos protetores reduz o escore.

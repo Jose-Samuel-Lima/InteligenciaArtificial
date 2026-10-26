@@ -1,0 +1,86 @@
+,correlacao_com_Burnout_Score
+Anxiety_Score,0.9172
+Emotional_Stability,-0.9091
+Mood_Score,-0.9083
+Depression_Score,0.9033
+Productivity_Score,-0.8851
+Stress_Level,0.8669
+Chronic_Stress,0.6283
+Work_Hours_Per_Week,0.6052
+Screen_Time_Hours,0.3473
+Coffee_Cups_Per_Day,0.2687
+Meditation_Minutes,-0.2303
+Sleep_Hours,-0.2171
+Sleep_Quality,-0.2084
+Physical_Activity_Hours,-0.1882
+Healthy_Diet,-0.0129
+Alcohol_Consumption,0.0129
+Country_Brazil,-0.0118
+Exercise_Frequency,-0.0117
+Occupation_HR Specialist,0.0107
+Country_Nigeria,-0.0102
+Occupation_Teacher,-0.0095
+Social_Media_Hours,0.0093
+Smoking,0.0092
+Country_France,0.0079
+Absenteeism_Days,-0.0073
+Country_Spain,-0.0072
+Occupation_Farmer,0.007
+Country_Turkey,-0.0066
+Country_Australia,0.0066
+Family_History_Mental_Illness,0.0062
+Remote_Work_No,0.006
+Country_India,0.0056
+Country_Italy,0.0056
+Education_Level,-0.0055
+Occupation_Freelancer,-0.0055
+Country_Germany,0.0053
+Remote_Work_Yes,-0.0052
+Country_Pakistan,-0.0052
+Occupation_Sales Executive,0.0051
+Country_Mexico,-0.0049
+Country_Singapore,-0.0048
+Occupation_Lawyer,-0.0047
+Job_Satisfaction,-0.0046
+Country_United States,0.0045
+Country_China,0.0045
+Employment_Status_Student,-0.0045
+Country_United Kingdom,-0.0045
+Employment_Status_Unemployed,0.0044
+Gender_Female,-0.0044
+Occupation_Data Scientist,-0.0039
+Country_Saudi Arabia,0.0038
+Country_Egypt,0.0038
+Occupation_Designer,0.0037
+Gender_Other,0.0037
+Occupation_Police Officer,0.0035
+Life_Satisfaction,0.0033
+Age,0.0031
+Country_Indonesia,0.0027
+Occupation_Chef,-0.0026
+Occupation_Business Owner,-0.0026
+Occupation_Software Engineer,-0.0024
+Occupation_Student,-0.0023
+Occupation_Researcher,0.0021
+Support_System,-0.0021
+Country_United Arab Emirates,0.002
+Gaming_Hours,-0.002
+Employment_Status_Employed,0.0018
+Employment_Status_Self-Employed,-0.0018
+Country_South Korea,0.0017
+Country_South Africa,0.0016
+Therapy_Attendance,0.0014
+Occupation_Doctor,0.0013
+Monthly_Income_USD,0.0011
+Country_Japan,-0.001
+Remote_Work_Hybrid,-0.0009
+Country_Canada,0.0008
+Occupation_Nurse,0.0008
+Occupation_Civil Engineer,-0.0007
+Gender_Male,0.0007
+Occupation_Pilot,-0.0004
+Country_Russia,-0.0003
+Occupation_Marketing Manager,0.0002
+Country_Malaysia,-0.0001
+Occupation_Accountant,0.0001
+Work_Life_Balance,0.0

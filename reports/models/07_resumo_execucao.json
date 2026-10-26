@@ -1,0 +1,37 @@
+{
+  "notebook": "07_generalization_efficiency",
+  "data_execucao": "2026-10-25 20:58",
+  "hardware": {
+    "Sistema operacional": "Windows 10 (10.0.26200)",
+    "Arquitetura": "AMD64",
+    "CPU": "Intel64 Family 6 Model 142 Stepping 12, GenuineIntel",
+    "Nucleos logicos": 8,
+    "Nucleos fisicos": 4,
+    "RAM total (GB)": 7.83,
+    "Python": "3.9.13",
+    "scikit-learn": "1.6.1",
+    "pandas": "2.3.3",
+    "numpy": "2.0.2",
+    "Data da medicao": "2026-10-25 20:54"
+  },
+  "modelos": [
+    "tree_classificacao",
+    "tree_regressao",
+    "rf_classificacao",
+    "rf_regressao",
+    "gb_classificacao",
+    "gb_regressao"
+  ],
+  "regras_classificacao": 19,
+  "regras_regressao": 16,
+  "arquivos_gerados": [
+    "comparativo_classificacao.csv",
+    "comparativo_regressao.csv",
+    "comparativo_final.csv",
+    "07_treinamento.csv",
+    "07_inferencia.csv",
+    "07_tamanho_disco.csv",
+    "07_energia.csv",
+    "07_esforco_humano.csv"
+  ]
+}

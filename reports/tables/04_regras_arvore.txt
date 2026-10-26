@@ -1,0 +1,15 @@
+REGRA-01 (n=10192)
+SE Stress_Level <= 0.50 E Anxiety_Score <= 29.50 E Depression_Score <= 31.50 E Mood_Score > 75.50 E Emotional_Stability > 64.50
+ENTÃO Burnout_Risk = Low
+Distribuição na folha: {'Low': 0.999, 'Moderate': 0.001, 'High': 0.0}
+
+REGRA-02 (n=2785)
+SE Stress_Level > 1.50 E Anxiety_Score > 79.50 E Depression_Score > 70.50 E Chronic_Stress > 0.50
+ENTÃO Burnout_Risk = High
+Distribuição na folha: {'Low': 0.0, 'Moderate': 0.008, 'High': 0.992}
+
+REGRA-03 (n=2382)
+SE Stress_Level <= 1.50 E Stress_Level > 0.50 E Anxiety_Score <= 52.50 E Anxiety_Score > 40.50 E Depression_Score <= 50.50 E Mood_Score > 51.50
+ENTÃO Burnout_Risk = Moderate
+Distribuição na folha: {'Low': 0.429, 'Moderate': 0.57, 'High': 0.002}
+

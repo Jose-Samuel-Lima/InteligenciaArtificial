@@ -1,0 +1,9 @@
+Modelo,Problema,Conjunto,F1_macro,Gap,RMSE
+RandomForest,Classificacao,Treino,0.8510495596640112,,
+RandomForest,Classificacao,Teste,0.799977739443738,0.051071820220273234,
+GradientBoosting,Classificacao,Treino,0.8013407572514643,,
+GradientBoosting,Classificacao,Teste,0.8008708057952392,0.0004699514562250817,
+RandomForest,Regressao,Treino,,,8.007548321459595
+RandomForest,Regressao,Teste,,0.8301953242602345,8.83774364571983
+GradientBoosting,Regressao,Treino,,,8.843833070776514
+GradientBoosting,Regressao,Teste,,0.06247991919798146,8.906312989974495

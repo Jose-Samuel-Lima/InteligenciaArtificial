@@ -1,0 +1,3 @@
+Problema,Modelo,F1_macro_treino,F1_macro_teste,Profundidade,Folhas,RMSE_treino,RMSE_teste,Gap
+Classificacao,Árvore sem restrição,1.0,0.7299127834303659,30,4360,,,0.2700872165696341
+Regressao,Árvore sem restrição,,,41,31638,0.0,12.539864433079012,12.539864433079012

@@ -1,0 +1,13 @@
+{
+  "Sistema operacional": "Windows 10 (10.0.26200)",
+  "Arquitetura": "AMD64",
+  "CPU": "Intel64 Family 6 Model 142 Stepping 12, GenuineIntel",
+  "Nucleos logicos": 8,
+  "Nucleos fisicos": 4,
+  "RAM total (GB)": 7.83,
+  "Python": "3.9.13",
+  "scikit-learn": "1.6.1",
+  "pandas": "2.3.3",
+  "numpy": "2.0.2",
+  "Data da medicao": "2026-10-25 20:54"
+}
