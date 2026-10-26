@@ -184,7 +184,8 @@ story = []
 # --------------------------------------------------------------------------
 story.append(Spacer(1, 0.8 * cm))
 story.append(p("UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE", "Center"))
-story.append(p("DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA (DCT)", "Center"))
+story.append(p("CENTRO DE ENSINO SUPERIOR DO SERIDÓ (CERES)", "Center"))
+story.append(p("DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA (DCT) — CAMPUS CAICÓ", "Center"))
 story.append(p("DCT1401 — INTELIGÊNCIA ARTIFICIAL", "Center"))
 story.append(p("Bacharelado em Sistemas de Informação", "Center"))
 story.append(Spacer(1, 2.0 * cm))
@@ -201,7 +202,7 @@ story.append(Spacer(1, 1.6 * cm))
 story.append(p("<b>Dataset:</b> mental_health_burnout_prediction_dataset.csv (Kaggle)", "Center"))
 story.append(p("<b>Repositório:</b> https://github.com/Jose-Samuel-Lima/InteligenciaArtificial", "Center"))
 story.append(Spacer(1, 1.2 * cm))
-story.append(p("Natal/RN — Outubro de 2026", "Center"))
+story.append(p("Caicó/RN — Outubro de 2026", "Center"))
 story.append(PageBreak())
 
 # --------------------------------------------------------------------------
@@ -761,7 +762,7 @@ story.append(p(
     "Ferramentas: Python 3.9, scikit-learn 1.6, pandas 2.3, NumPy 2.0, Matplotlib/Seaborn, ReportLab."
 ))
 story.append(Spacer(1, 1.0 * cm))
-story.append(p("Natal/RN, Outubro de 2026", "Center"))
+story.append(p("Caicó/RN, Outubro de 2026", "Center"))
 story.append(p("José Samuel Silva Lima", "Center"))
 
 doc.build(story, canvasmaker=NumberedCanvas)

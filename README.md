@@ -3,6 +3,7 @@
 **Aluno:** José Samuel Silva Lima  
 **Matrícula:** 20250038765  
 **Disciplina:** DCT1401 — Inteligência Artificial  
+**Unidade:** UFRN — CERES — DCT, Campus Caicó  
 **Período:** 2026.2  
 **Repositório:** [github.com/Jose-Samuel-Lima/InteligenciaArtificial](https://github.com/Jose-Samuel-Lima/InteligenciaArtificial)
 
