@@ -22,13 +22,13 @@ from src.avaliacao_final import split_test_y  # noqa: E402
 from src.persistencia import carregar_checkpoint, padronizar, reconstruir_modelo  # noqa: E402
 from src.split import carregar_split  # noqa: E402
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.lib.utils import ImageReader
-from reportlab.platypus import (Image, PageBreak, Paragraph, SimpleDocTemplate,
-                                Spacer, Table, TableStyle)
+from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph,
+                                SimpleDocTemplate, Spacer, Table, TableStyle)
 
 ROOT = Path(__file__).resolve().parent.parent
 TABLES = ROOT / "reports" / "tables"
@@ -36,12 +36,24 @@ FIGURES = ROOT / "reports" / "figures"
 MODELS = ROOT / "reports" / "models"
 DOCS = ROOT / "docs"
 
-styles = getSampleStyleSheet()
-H1 = ParagraphStyle("H1", parent=styles["Heading1"], fontSize=15, spaceAfter=8, textColor=colors.HexColor("#1f4e79"))
-H2 = ParagraphStyle("H2", parent=styles["Heading2"], fontSize=12, spaceBefore=10, spaceAfter=5)
-NORMAL = ParagraphStyle("Normal2", parent=styles["Normal"], fontSize=9, leading=12.5)
-SMALL = ParagraphStyle("Small2", parent=styles["Normal"], fontSize=8, leading=10.5)
-CENTER = ParagraphStyle("Center", parent=NORMAL, alignment=TA_CENTER)
+# Padrão ABNT: Times New Roman 12, espaçamento 1,5, parágrafos justificados
+# com recuo de 1,25 cm e margens 3 cm (esquerda/superior) e 2 cm (direita/inferior).
+H1 = ParagraphStyle("ABNTH1", fontName="Times-Bold", fontSize=12, leading=18,
+                    alignment=TA_LEFT, spaceBefore=12, spaceAfter=6)
+H2 = ParagraphStyle("ABNTH2", fontName="Times-Bold", fontSize=12, leading=18,
+                    alignment=TA_LEFT, spaceBefore=10, spaceAfter=4)
+NORMAL = ParagraphStyle("ABNTNormal", fontName="Times-Roman", fontSize=12, leading=18,
+                        alignment=TA_JUSTIFY, firstLineIndent=1.25 * cm, spaceAfter=6)
+SMALL = ParagraphStyle("ABNTSmall", fontName="Times-Roman", fontSize=11, leading=16.5,
+                       alignment=TA_JUSTIFY, firstLineIndent=0.75 * cm, spaceAfter=5)
+CENTER = ParagraphStyle("ABNTCenter", fontName="Times-Roman", fontSize=12, leading=18,
+                        alignment=TA_CENTER)
+COVER_TITLE = ParagraphStyle("CoverTitle", fontName="Times-Bold", fontSize=16,
+                             leading=24, alignment=TA_CENTER)
+CAPTION = ParagraphStyle("ABNTCaption", fontName="Times-Roman", fontSize=10,
+                         leading=14, alignment=TA_CENTER, spaceBefore=4, spaceAfter=8)
+TABLE_CELL = ParagraphStyle("ABNTCell", fontName="Times-Roman", fontSize=8.5, leading=10.5)
+TABLE_HEAD = ParagraphStyle("ABNTHead", fontName="Times-Bold", fontSize=8.5, leading=10.5)
 
 HIPOTESES = {
     "Neurônios por camada": (
@@ -83,38 +95,54 @@ def par(texto: str, estilo=NORMAL) -> Paragraph:
     return Paragraph(texto, estilo)
 
 
-def tabela(df: pd.DataFrame, ncols: int | None = None, max_linhas: int = 30) -> Table:
+def tabela(df: pd.DataFrame, ncols: int | None = None, max_linhas: int = 30,
+           legenda: str | None = None):
+    """Tabela em padrão ABNT: Times 8,5, linhas fechadas e legenda acima."""
     d = df.head(max_linhas).copy()
     for c in d.columns:
         if d[c].dtype.kind == "f":
             d[c] = d[c].map(lambda v: f"{v:.4f}" if pd.notna(v) else "-")
         else:
             d[c] = d[c].astype(str)
-    dados = [list(d.columns)] + d.values.tolist()
-    if ncols:
-        largura = 17 * cm / ncols
-        col_widths = [largura] * len(d.columns)
-    else:
-        col_widths = None
+
+    cabecalho = [Paragraph(str(c), TABLE_HEAD) for c in d.columns]
+    linhas = [[Paragraph(str(v), TABLE_CELL) for v in row] for row in d.values.tolist()]
+    dados = [cabecalho] + linhas
+
+    # Largura útil da página: 21 - 3 - 2 = 16 cm, distribuída pelo tamanho do conteúdo.
+    pesos = [max([len(str(c)) for c in d.columns] +
+                 [len(str(row[j])) for row in d.values.tolist()]) for j in range(len(d.columns))]
+    total = sum(pesos) or 1
+    col_widths = [16 * cm * p / total for p in pesos]
+
     t = Table(dados, colWidths=col_widths, repeatRows=1, hAlign="LEFT")
     t.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1f4e79")),
-        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-        ("FONTSIZE", (0, 0), (-1, -1), 7),
-        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-        ("GRID", (0, 0), (-1, -1), 0.4, colors.grey),
-        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#eef3f8")]),
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f2f2f2")),
+        ("GRID", (0, 0), (-1, -1), 0.5, colors.black),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
     ]))
+    if legenda:
+        return KeepTogether([Paragraph(legenda, CAPTION), t])
     return t
 
 
-def imagem(nome: str, largura: float = 16 * cm) -> Image:
+def figura(nome: str, legenda: str, largura: float = 16 * cm):
+    """Figura centralizada com legenda ABNT (número e descrição abaixo)."""
     caminho = FIGURES / nome
     if not caminho.exists():
         return par(f"[figura ausente: {nome}]", SMALL)
     iw, ih = ImageReader(str(caminho)).getSize()
-    return Image(str(caminho), width=largura, height=largura * ih / iw)
+    img = Image(str(caminho), width=largura, height=largura * ih / iw)
+    return KeepTogether([img, Paragraph(legenda, CAPTION)])
+
+
+def imagem(nome: str, largura: float = 16 * cm):
+    """Compatibilidade: figura sem legenda."""
+    return figura(nome, "", largura)
 
 
 def _json(caminho: Path) -> dict:
@@ -260,10 +288,15 @@ def secao_hiperparametros(story: list, nome: str) -> None:
 
     story.append(par("Sensibilidade ordenada (impacto = melhor − pior valor testado):", SMALL))
     story.append(tabela(sens[["hiperparametro", "valor", "metrica_media", "metrica_desvio", "impacto"]]
-                        .head(12)))
+                        .head(12),
+                        legenda=f"Tabela {2 if nome == 'classificacao' else 1} — Sensibilidade dos hiperparâmetros ({nome})"))
     story.append(Spacer(1, 8))
-    story.append(imagem(f"05_hiperparametros_{nome}.png"))
-    story.append(imagem(f"05_mapa_calor_{nome}.png"))
+    base = 1 if nome == "regressao" else 3
+    rotulo = "regressão" if nome == "regressao" else "classificação"
+    story.append(figura(f"05_hiperparametros_{nome}.png",
+                        f"Figura {base} — Métrica de validação por hiperparâmetro ({rotulo})."))
+    story.append(figura(f"05_mapa_calor_{nome}.png",
+                        f"Figura {base + 1} — Interação taxa de aprendizado × tamanho do batch ({rotulo})."))
     story.append(PageBreak())
 
 
@@ -271,9 +304,18 @@ def main() -> None:
     DOCS.mkdir(exist_ok=True)
     saida = DOCS / "relatorio_final_3.pdf"
     doc = SimpleDocTemplate(str(saida), pagesize=A4,
-                            leftMargin=2 * cm, rightMargin=2 * cm,
-                            topMargin=1.8 * cm, bottomMargin=1.8 * cm,
+                            leftMargin=3 * cm, rightMargin=2 * cm,
+                            topMargin=3 * cm, bottomMargin=2 * cm,
                             title="Redes Neurais com PyTorch — DCT1401")
+
+    def _numero_pagina(canvas, documento):
+        """ABNT: capa sem número; demais páginas numeradas no alto à direita."""
+        if documento.page > 1:
+            canvas.saveState()
+            canvas.setFont("Times-Roman", 10)
+            canvas.drawRightString(A4[0] - 2 * cm, A4[1] - 1.5 * cm, str(documento.page - 1))
+            canvas.restoreState()
+
     story: list = []
 
     # 1. Capa
@@ -283,7 +325,7 @@ def main() -> None:
         par("DEPARTAMENTO DE COMPUTAÇÃO E TECNOLOGIA", CENTER),
         par("DCT1401 — INTELIGÊNCIA ARTIFICIAL", CENTER),
         Spacer(1, 1.5 * cm),
-        par("Redes Neurais Artificiais com PyTorch:<br/>Classificação, Regressão e Estudo de Hiperparâmetros", H1),
+        par("REDES NEURAIS ARTIFICIAIS COM PYTORCH:<br/>CLASSIFICAÇÃO, REGRESSÃO E ESTUDO DE HIPERPARÂMETROS", COVER_TITLE),
         par("Atividade Prática Avaliativa — 3ª avaliação", CENTER),
         Spacer(1, 1.2 * cm),
         par("Aluno: José Samuel Silva Lima", CENTER),
@@ -296,7 +338,7 @@ def main() -> None:
     ]
 
     # 2. Introdução
-    story.append(par("1. Introdução", H1))
+    story.append(par("1 INTRODUÇÃO", H1))
     story.append(par(
         "Este relatório responde à 3ª atividade avaliativa da disciplina DCT1401. O cliente da consultoria analítica "
         "questiona se uma rede neural artificial é uma alternativa viável aos modelos tradicionais avaliados na atividade anterior. "
@@ -306,7 +348,7 @@ def main() -> None:
         "em ambiente limpo. As métricas seguem a taxonomia da Aula 08."))
 
     # 3. Protocolo
-    story.append(par("2. Protocolo experimental", H1))
+    story.append(par("2 PROTOCOLO EXPERIMENTAL", H1))
     hardware = json.loads((MODELS / "08_hardware.json").read_text(encoding="utf-8")) if (MODELS / "08_hardware.json").exists() else {}
     story.append(par(
         "Foram reutilizados `dataset_regression.csv` e `dataset_classification.csv` (50.000 linhas, 85 features após codificação), "
@@ -325,7 +367,7 @@ def main() -> None:
         "declarada e foi adotada após benchmark local que mostrou custo de ~4,4 s/época em batch 32 contra ~1,7 s/época em batch 128."))
 
     # 4. Redes implementadas
-    story.append(par("3. Redes neurais implementadas", H1))
+    story.append(par("3 REDES NEURAIS IMPLEMENTADAS", H1))
     story.append(par(
         "A classe parametrizável `MLP` permite alterar neurônios, camadas, ativação, dropout, BatchNorm e inicialização sem "
         "modificar o código. A saída é sempre linear (logits). Na <b>regressão</b> usa-se 1 neurônio e `MSELoss`, coerente com "
@@ -335,7 +377,7 @@ def main() -> None:
         "confiança foi escolhido na validação, com fallback para a classe majoritária nas previsões de baixa confiança."))
 
     # 5. Estudo
-    story.append(par("4. Estudo de hiperparâmetros", H1))
+    story.append(par("4 ESTUDO DE HIPERPARÂMETROS", H1))
     story.append(par(
         "A configuração de referência foi: 2 camadas ocultas com 32 neurônios, ReLU, Adam, taxa 1e-3, batch 128, sem dropout "
         "nem weight decay, até 200 épocas com paciência 20 no treino do baseline. No estudo controlado variou-se um fator por "
@@ -346,7 +388,7 @@ def main() -> None:
     secao_hiperparametros(story, "classificacao")
 
     # 6. Persistência
-    story.append(par("5. Persistência, carregamento e inferência", H1))
+    story.append(par("5 PERSISTÊNCIA, CARREGAMENTO E INFERÊNCIA", H1))
     fid_path = TABLES / "06_fidelidade_modelos.csv"
     story.append(par(
         "Foram comparadas duas formas de persistência. Salvar o modelo inteiro usa `pickle`, acopla o arquivo à definição da "
@@ -356,26 +398,30 @@ def main() -> None:
         "seguido de `eval()` e `torch.inference_mode()`. Esquecer `eval()` em uma rede com dropout tornaria as previsões "
         "aleatórias e desligaria a escala esperada do BatchNorm."))
     if fid_path.exists():
-        story.append(tabela(pd.read_csv(fid_path)))
+        story.append(tabela(pd.read_csv(fid_path),
+                            legenda="Tabela 3 — Verificação de fidelidade dos modelos recarregados."))
     for nome in ("regressao", "classificacao"):
         p = ROOT / "models" / f"modelo_{nome}.pt"
         if p.exists():
             story.append(par(f"{nome}: {p.stat().st_size / 1024:.1f} KB", SMALL))
 
     # 7. Resultados
-    story.append(par("6. Resultados", H1))
+    story.append(par("6 RESULTADOS", H1))
     for nome in ("regressao", "classificacao"):
-        story.append(par(f"6.{1 if nome == 'regressao' else 2} {nome}", H2))
+        rotulo = "REGRESSÃO" if nome == "regressao" else "CLASSIFICAÇÃO"
+        story.append(par(f"6.{1 if nome == 'regressao' else 2} {rotulo}", H2))
+        ntab = 4 if nome == "regressao" else 5
         mp = TABLES / f"07_metricas_teste_{nome}.csv"
         if mp.exists():
-            story.append(tabela(pd.read_csv(mp)))
+            story.append(tabela(pd.read_csv(mp),
+                                legenda=f"Tabela {ntab} — Métricas no conjunto de teste ({nome})."))
         cv = TABLES / f"07_validacao_cruzada_{nome}.csv"
         if cv.exists():
             d = pd.read_csv(cv)
             col = "metrica_validacao"
             story.append(par(f"Validação cruzada K=5: {d[col].mean():.4f} ± {d[col].std():.4f} "
                              f"(métrica de validação por fold).", SMALL))
-            story.append(tabela(d))
+            story.append(tabela(d, legenda=f"Tabela {ntab + 2} — Validação cruzada K=5 ({nome})."))
         fp = MODELS / f"final_{nome}.json"
         if fp.exists():
             r = json.loads(fp.read_text(encoding="utf-8"))
@@ -384,21 +430,29 @@ def main() -> None:
                 f"{r['parametros']} parâmetros, melhor época {r['epoca_melhor']}, "
                 f"tempo de treino {r['tempo_s']:.1f} s. Média entre 5 sementes na validação: "
                 f"{pd.DataFrame(r['sementes'])['metrica_validacao'].mean():.4f}.", SMALL))
-    story.append(par("6.3 Baseline versus configuração final", H2))
+    story.append(par("6.3 BASELINE VERSUS CONFIGURAÇÃO FINAL", H2))
     story.append(par("A configuração de referência não foi avaliada no teste; o teste foi reservado para o modelo final.", SMALL))
-    story.append(tabela(tabela_baseline_final()))
-    story.append(par("6.4 Tabela-resumo final", H2))
-    story.append(tabela(tabela_resumo_final()))
+    story.append(tabela(tabela_baseline_final(),
+                        legenda="Tabela 8 — Configuração de referência e configuração final, lado a lado."))
+    story.append(par("6.4 TABELA-RESUMO FINAL", H2))
+    story.append(tabela(tabela_resumo_final(),
+                        legenda="Tabela 9 — Resumo único das configurações finais, métricas, gap e custo."))
     story.append(PageBreak())
-    story.append(imagem("07_residuos_regressao.png"))
-    story.append(imagem("07_curvas_roc_pr_mlp.png"))
-    story.append(imagem("07_curvas_aprendizado_classificacao.png"))
-    story.append(imagem("07_curvas_aprendizado_regressao.png"))
+    story.append(figura("07_residuos_regressao.png",
+                        "Figura 5 — Valores reais, previstos e resíduos da regressão no conjunto de teste."))
+    story.append(figura("07_curvas_roc_pr_mlp.png",
+                        "Figura 6 — Curvas ROC e precisão-recall da classificação no conjunto de teste."))
+    story.append(figura("07_curvas_aprendizado_classificacao.png",
+                        "Figura 7 — Curvas de aprendizado da configuração final de classificação."))
+    story.append(figura("07_curvas_aprendizado_regressao.png",
+                        "Figura 8 — Curvas de aprendizado da configuração final de regressão."))
     ef = TABLES / "08_eficiencia.csv"
     if ef.exists():
-        story.append(par("6.3 Eficiência computacional", H2))
+        story.append(par("6.5 EFICIÊNCIA COMPUTACIONAL", H2))
         d = pd.read_csv(ef)
-        story.append(tabela(d.T.reset_index().rename(columns={"index": "Métrica", 0: "Regressão", 1: "Classificação"})))
+        story.append(tabela(
+            d.T.reset_index().rename(columns={"index": "Métrica", 0: "Regressão", 1: "Classificação"}),
+            legenda="Tabela 10 — Tempo, memória, tamanho, energia e CO₂ das redes finais."))
         story.append(par(
             "A memória foi medida com `psutil` (RSS do processo), e não com `tracemalloc`, porque este último não captura as alocações nativas do PyTorch. "
             "Foram usadas 2 threads, configuradas no código conforme benchmark local. "
@@ -407,7 +461,7 @@ def main() -> None:
             "é amortizado; para implantação em borda, menos neurônios, quantização e poda reduziriam tamanho e energia."))
 
     # 8. Análise
-    story.append(par("7. Análise e discussão", H1))
+    story.append(par("7 ANÁLISE E DISCUSSÃO", H1))
     for nome in ("regressao", "classificacao"):
         rotulo = "regressão" if nome == "regressao" else "classificação"
         story.append(par(f"7.{1 if nome == 'regressao' else 2} {rotulo}", H2))
@@ -428,8 +482,9 @@ def main() -> None:
         story.append(par(pergunta))
     # Classificação das configurações extremas (evidência numérica do estudo).
     extremos, _ = tabela_configuracoes_extremas()
-    story.append(par("7.3 Configurações extremas: overfitting, underfitting ou bem ajustado", H2))
-    story.append(tabela(extremos))
+    story.append(par("7.3 CONFIGURAÇÕES EXTREMAS: OVERFITTING, UNDERFITTING OU BEM AJUSTADO", H2))
+    story.append(tabela(extremos,
+                        legenda="Tabela 11 — Evidências numéricas das configurações com 8 e 64 neurônios."))
     story.append(par(
         "Para a regressão, o RMSE de validação é maior (pior) tanto com 8 quanto com 64 neurônios do que a configuração "
         "intermediária: a rede menor tem capacidade insuficiente (underfitting) e a maior apresenta gap maior e custo "
@@ -438,11 +493,12 @@ def main() -> None:
         "extremos e a configuração final é comparável ao desvio entre sementes, portanto não é tratada como efeito real.", SMALL))
 
     # Limiar escolhido na validação.
-    story.append(par("7.4 Efeito do limiar de decisão (validação)", H2))
+    story.append(par("7.4 EFEITO DO LIMIAR DE DECISÃO (VALIDAÇÃO)", H2))
     story.append(par(
         "O limiar de confiança foi otimizado apenas na validação. Abaixo dele, a previsão retorna à classe majoritária "
         "(Low), o que aumenta precisão nas classes bem representadas e reduz recall nas demais.", SMALL))
-    story.append(tabela(tabela_limiar()))
+    story.append(tabela(tabela_limiar(),
+                        legenda="Tabela 12 — Efeito do limiar de confiança nas métricas macro da validação."))
 
     story.append(par(
         "Comparação referencial (atividade 2, mesmos conjuntos): melhor RMSE de regressão ≈ 8,84 (Random Forest) e melhor "
@@ -450,7 +506,7 @@ def main() -> None:
         "compensou o custo adicional de treino e ajuste."))
 
     # 9. Considerações
-    story.append(par("8. Considerações finais", H1))
+    story.append(par("8 CONSIDERAÇÕES FINAIS", H1))
     story.append(par(
         "Limitações: estudo de um fator por vez não cobre todas as interações; screening em subamostra; número limitado de "
         "sementes; uma única divisão treino/teste; estimativa de energia por potência média em vez de medição na tomada. "
@@ -458,13 +514,13 @@ def main() -> None:
         "salvo dão suporte às conclusões."))
 
     # 10. Repositório
-    story.append(par("9. Repositório de código", H1))
+    story.append(par("9 REPOSITÓRIO DE CÓDIGO", H1))
     story.append(par(
         "github.com/Jose-Samuel-Lima/InteligenciaArtificial — notebooks 03 a 08; módulos em `src/` "
         "(models, train, experimento, hparam_study, persistencia, inference, avaliacao_final, eficiencia); "
         "checkpoints em `models/`; logs em `logs/hiperparametros.csv`; tabelas e figuras em `reports/`."))
 
-    doc.build(story)
+    doc.build(story, onFirstPage=_numero_pagina, onLaterPages=_numero_pagina)
     print("relatório gerado:", saida)
 
 

@@ -180,7 +180,7 @@ python scripts/gerar_relatorio_3.py
 
 ### Resultados
 
-Relatório completo: `docs/relatorio_final_3.pdf`.
+Relatório completo (diagramação ABNT: margens 3/2 cm, Times 12, espaçamento 1,5, figuras e tabelas numeradas): `docs/relatorio_final_3.pdf`.
 
 | Problema | Configuração escolhida | Validação | Teste |
 |---|---|---|---|
