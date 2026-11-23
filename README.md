@@ -146,6 +146,52 @@ O MAPE é sensível a escores reais próximos de zero (700 observações de test
 - **Inferência**: 0,0018–0,0022 ms/amostra (árvore), 0,0025–0,0117 (especialista), 0,0061–0,0146 (Gradient Boosting) e 0,0270–0,0306 (Random Forest).
 - **Energia/CO₂** (CPU de 45 W, PUE 1,0, 0,0817 kgCO₂/kWh): treinamento entre 8,3 e 994,7 mWh; inferência de 1.000 amostras abaixo de 0,4 mWh. São estimativas de ordem de grandeza, não medições na tomada.
 
+## Atividade 03 — redes neurais com PyTorch
+
+Continuação da atividade 02 sobre **os mesmos datasets, targets e divisão treino/teste**. Em vez de comparar famílias de modelos, agora são treinadas MLPs para os dois problemas, com estudo controlado de hiperparâmetros, persistência em `.pt` e inferência em ambiente limpo.
+
+### Novos arquivos
+
+- `notebooks/03_mlp_regressao.ipynb` a `08_eficiencia_computacional.ipynb`;
+- `src/models.py` (MLP parametrizável), `src/train.py` (loop + early stopping + sementes), `src/split.py` (splits salvos), `src/experimento.py`, `src/hparam_study.py`, `src/persistencia.py`, `src/inference.py`, `src/avaliacao_final.py`, `src/eficiencia.py`;
+- `data/processed/splits/` (índices de treino/validação/teste, idênticos ao teste da atividade 02);
+- `models/modelo_regressao.pt` e `models/modelo_classificacao.pt` (checkpoints completos);
+- `logs/hiperparametros.csv` (todas as configurações e sementes);
+- `scripts/gerar_relatorio_3.py` → `docs/relatorio_final_3.pdf`.
+
+### Protocolo
+
+- 32.000 treino / 8.000 validação / 10.000 teste (semente 42); o teste é consultado apenas na avaliação final.
+- `StandardScaler` ajustado no treino; na regressão o alvo também é padronizado e invertido antes das métricas.
+- Classificação multiclasse: 3 logits + `CrossEntropyLoss` (Low=0, Moderate=1, High=2); regressão: 1 saída linear + `MSELoss`.
+- 3 sementes por configuração no estudo, 5 sementes na configuração final; `torch.set_num_threads(2)` conforme benchmark local.
+- Estudo com 3.000 registros (screening, 12 épocas, 3 sementes); baseline, configuração final, K-fold e teste com o conjunto completo.
+
+### Como executar
+
+```bash
+pip install -r requirements.txt
+python -m src.split
+# notebooks 03 a 08, nesta ordem (a 05 e a 07 só recalculam se os artefatos não existirem)
+python src/inference.py --modelo models/modelo_classificacao.pt \
+  --entrada data/processed/dataset_classification.csv --n 5
+python scripts/gerar_relatorio_3.py
+```
+
+### Resultados
+
+Relatório completo: `docs/relatorio_final_3.pdf`.
+
+| Problema | Configuração escolhida | Validação | Teste |
+|---|---|---|---|
+| Regressão | MLP `(64,64)` Tanh, AdamW, lr≈2,4e-3, batch 256, dropout 0,1, L2=1e-4 | RMSE 9,13 (média de 5 sementes) | RMSE 9,06; MAE 7,70; R² 0,881; MedAE 7,28 |
+| Classificação | MLP `(16,16,16)` LeakyReLU, AdamW, lr≈1,3e-3, batch 32, dropout 0,1, L2=1e-3 | F1-macro 0,793 (média de 5 sementes) | F1-macro 0,796; acurácia 0,815; ROC-AUC 0,945; PR-AUC 0,862 |
+
+- K-fold (K=5): regressão RMSE **9,11 ± 0,05**; classificação F1-macro **0,793 ± 0,003**.
+- Gaps treino-teste pequenos (RMSE -0,07; F1-macro 0,0069), sem evidência de overfitting relevante.
+- Checkpoints: 45,15 KB (regressão, 9.729 parâmetros) e 15,02 KB (classificação, 1.971 parâmetros). Recarregados reproduzem os logits de validação com diferença máxima ≤ 2e-6.
+- Inferência em lote (10.000 amostras): ~9,9 ms (regressão) e ~3,7 ms (classificação), com 2 threads; memória medida por `psutil` (RSS).
+
 ### Como reproduzir
 
 ```bash

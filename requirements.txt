@@ -8,3 +8,7 @@ jupyter
 joblib
 psutil
 reportlab
+torch>=2.0
+codecarbon>=2.4
+# Instalacao CPU do PyTorch (evita baixar os pacotes CUDA, de ~2 GB):
+# pip install torch --index-url https://download.pytorch.org/whl/cpu

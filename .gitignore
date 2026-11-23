@@ -11,6 +11,9 @@ venv/
 reports/models/*.joblib
 reports/predictions/*.npz
 
+# Enunciado da avaliação (fornecido pelo professor, não versionar)
+main_10.pdf
+
 # Sistema
 .DS_Store
 Thumbs.db
