@@ -1,0 +1,3 @@
+problema,parametros,diferenca_maxima_absoluta,allclose,n_amostras
+regressao,9729,2.384185791015625e-07,True,8000
+classificacao,1971,1.9073486328125e-06,True,8000
