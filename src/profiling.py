@@ -95,3 +95,17 @@ def format_profile_row(familia: str, modelo: str, perfil: InferenceProfile, trei
         "Pico memória treino (KB)": treino["pico_memoria_treinamento_kb"] if treino else "Não se aplica",
     }
     return row
+
+
+def profile_torch_model(nome: str) -> dict:
+    """Mede um modelo PyTorch da 3ª avaliação com ``psutil``.
+
+    As funções acima usam ``tracemalloc`` para os modelos clássicos (que não
+    alocam memória em código nativo). Para PyTorch isso é insuficiente: as
+    medições de redes neurais usam ``psutil.Process().memory_info().rss`` e
+    ficam concentradas em :mod:`src.eficiencia`. Esta função é apenas a ponte
+    que mantém a estrutura sugerida no enunciado.
+    """
+    from .eficiencia import medir  # importado aqui para não afetar a atividade 2
+
+    return medir(nome)

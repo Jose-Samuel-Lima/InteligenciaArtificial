@@ -1,0 +1,3 @@
+problema,tempo_treino_wall_clock_s,tempo_inferencia_lote_media_s,tempo_inferencia_lote_desvio_s,tempo_por_amostra_ms,tempo_1_amostra_ms,vazao_amostras_por_s,delta_memoria_rss_kb,memoria_rss_final_mb,tamanho_arquivo_kb,parametros,camadas_lineares,macs_por_amostra,threads_cpu,energia_treino_kwh,energia_inferencia_kwh,co2_treino_g,co2_inferencia_g
+regressao,35.273,0.009875,0.001651,0.000988,0.365023,1012634.6,5644.0,339.0,45.15,9729,3,9600,2,0.00044092,1.2e-07,0.02019,1e-05
+classificacao,123.602,0.003721,0.001153,0.000372,0.53586,2687293.1,884.0,319.9,15.02,1971,4,1920,2,0.00154502,5e-08,0.07076,0.0

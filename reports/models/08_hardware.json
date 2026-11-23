@@ -1,0 +1,10 @@
+{
+  "processador": "Intel64 Family 6 Model 142 Stepping 12, GenuineIntel",
+  "sistema": "Windows-11-10.0.26200-SP0",
+  "memoria_ram_gb": 7.8,
+  "threads_cpu": 2,
+  "pytorch": "2.15.0+cpu",
+  "potencia_media_w": 45.0,
+  "fator_co2_g_por_kwh": 45.8,
+  "metodo_memoria": "psutil Process().memory_info().rss"
+}
