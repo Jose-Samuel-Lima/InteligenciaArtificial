@@ -1,0 +1,19 @@
+Conjunto,Métrica,Valor
+Teste,Accuracy,0.8145
+Teste,Precision (macro),0.8003635635272993
+Teste,Recall (macro),0.7921491075819471
+Teste,F1 (macro),0.7958733403714078
+Teste,Precision (weighted),0.8162782631289413
+Teste,Recall (weighted),0.8145
+Teste,F1 (weighted),0.8151360591649461
+Teste,ROC-AUC (OVR macro),0.9446615546633046
+Teste,PR-AUC (macro),0.8622695639637129
+Gap (treino-teste),Gap Accuracy,0.007593749999999955
+Gap (treino-teste),Gap Precision (macro),0.006622257443941404
+Gap (treino-teste),Gap Recall (macro),0.007186111437938236
+Gap (treino-teste),Gap F1 (macro),0.00687620208692008
+Gap (treino-teste),Gap Precision (weighted),0.007833467075882172
+Gap (treino-teste),Gap Recall (weighted),0.007593749999999955
+Gap (treino-teste),Gap F1 (weighted),0.007687568355099317
+Gap (treino-teste),Gap ROC-AUC (OVR macro),0.004121717252418833
+Gap (treino-teste),Gap PR-AUC (macro),0.01470157187502752

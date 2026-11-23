@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import label_binarize
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
@@ -113,10 +114,12 @@ def classification_metrics(y_true, y_pred, y_proba=None, classes=None) -> dict:
         else:
             try:
                 metrics["ROC-AUC (OVR macro)"] = float(
-                    roc_auc_score(y_true, y_proba, multi_class="ovr", average="macro", labels=classes)
+                    roc_auc_score(y_true, y_proba, multi_class="ovr", average="macro",
+                                  labels=list(range(y_proba.shape[1])))
                 )
+                y_bin = label_binarize(y_true, classes=list(range(len(classes))))
                 metrics["PR-AUC (macro)"] = float(
-                    average_precision_score(y_true, y_proba, average="macro")
+                    average_precision_score(y_bin, y_proba, average="macro")
                 )
             except ValueError:
                 metrics["ROC-AUC (OVR macro)"] = float("nan")

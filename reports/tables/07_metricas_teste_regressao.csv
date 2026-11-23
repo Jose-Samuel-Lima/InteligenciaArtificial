@@ -1,0 +1,15 @@
+Conjunto,Métrica,Valor
+Teste,MAE,7.702964968299866
+Teste,MSE,82.1636361570837
+Teste,RMSE,9.064415930278338
+Teste,MAPE (%),37.29722146214147
+Teste,R²,0.8809304862458575
+Teste,MedAE,7.281538963317871
+Teste,Cobertura MAPE (%),93.0
+Gap (treino-teste),Gap MAE,-0.08266900459527982
+Gap (treino-teste),Gap MSE,-1.2692156014817328
+Gap (treino-teste),Gap RMSE,-0.07028336756824771
+Gap (treino-teste),Gap MAPE (%),-1.7007634413488475
+Gap (treino-teste),Gap R²,0.00124824783971067
+Gap (treino-teste),Gap MedAE,-0.09827709197998047
+Gap (treino-teste),Gap Cobertura MAPE (%),0.08750000000000568
