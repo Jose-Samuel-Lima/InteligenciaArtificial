@@ -1,0 +1,15 @@
+{
+  "hidden": [
+    16,
+    16,
+    16
+  ],
+  "activation": "LeakyReLU",
+  "optimizer": "AdamW",
+  "lr": 0.001292346937795107,
+  "batch_size": 32,
+  "dropout": 0.1,
+  "weight_decay": 0.001,
+  "initialization": "padrao",
+  "batch_norm": false
+}
