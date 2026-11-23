@@ -1,0 +1,11 @@
+{
+  "semente": 42,
+  "test_size": 0.2,
+  "val_size_dentro_do_treino": 0.2,
+  "n_total": 50000,
+  "n_treino": 32000,
+  "n_validacao": 8000,
+  "n_teste": 10000,
+  "estratificada": false,
+  "alvo": "Burnout_Score"
+}
